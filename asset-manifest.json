@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/exemplu-tema-redux/static/css/main.0f61c070.css",
+    "main.js": "/exemplu-tema-redux/static/js/main.82dd888b.js",
+    "index.html": "/exemplu-tema-redux/index.html",
+    "main.0f61c070.css.map": "/exemplu-tema-redux/static/css/main.0f61c070.css.map",
+    "main.82dd888b.js.map": "/exemplu-tema-redux/static/js/main.82dd888b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0f61c070.css",
+    "static/js/main.82dd888b.js"
+  ]
+}
