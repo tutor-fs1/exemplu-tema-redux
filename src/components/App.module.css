@@ -1,0 +1,23 @@
+div {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+.wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #010101;
+  gap: 30px;
+  padding: 30px;
+}
+
+.wrapper > div {
+  flex: 0 0 50%;
+  align-self: stretch;
+}

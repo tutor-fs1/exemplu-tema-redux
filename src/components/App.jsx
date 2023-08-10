@@ -1,16 +1,12 @@
+import { AddTask } from './AddTask/AddTask';
+import css from './App.module.css';
+import { TaskDisplay } from './TaskDisplay/TaskDisplay';
 export const App = () => {
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div className={css.wrapper}>
+      <AddTask />
+      <TaskDisplay />
     </div>
   );
 };
