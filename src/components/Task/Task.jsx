@@ -1,8 +1,17 @@
-export const Task = () => {
-  const taskCompleted = true;
-  const taskName = "Name of task";
+import { MdClose } from "react-icons/md";
+import { removeTask, toggleCompleted } from "redux/tasksSlice";
+import { useDispatch, useSelector } from "react-redux";
+
+export const Task = ({ task }) => {
+  const dispatch = useDispatch();
+  const taskCompleted = task.completed;
+  const taskName = task.text;
+  const category = task.category;
   const handleToggle = () => {
-    console.log('aaa');
+    dispatch(toggleCompleted(task.id))
+  }
+  const handleRemove = () => {
+    dispatch(removeTask(task.id))
   }
   return <li className="list-group-item">
     <div className="form-check">
@@ -14,8 +23,11 @@ export const Task = () => {
         onChange={handleToggle}
       />
       <label className="form-check-label" htmlFor="TASKID1">
-        {taskName}
+        {taskName} <span className="badge bg-secondary">{category}</span>
       </label>
+      <button className="btn-icon" onClick={handleRemove}>
+        <MdClose size={24} />
+      </button>
     </div>
   </li>
 }

@@ -1,17 +1,24 @@
+import { useSelector } from "react-redux";
+import { categoriesForFilter } from "redux/constants";
+import { useDispatch } from "react-redux";
+import { changeTextFilter, changeCategoryFilter, changeStatusFilter } from "redux/filtersSlice";
+import { completedFilters } from "redux/constants";
+
 export const TaskFilters = () => {
-  const filterValue = '';
-  const categoryFilter = 'all';
-  const handleFilterChange = () => {
-    console.log();
+  const dispatch = useDispatch();
+  const filters = useSelector(state => state.filters);
+  const handleFilterChange = (e) => {
+    const name = e.target.value;
+    dispatch(changeTextFilter(name));
   }
   const handleCategoryChange = (e) => {
-    console.log(e.target);
+    dispatch(changeCategoryFilter(e.target.value));
   }
-  const categories = [
-    'all',
-    'work',
-    'domestic'
-  ]
+  const handleStatusChange = (e) => {
+    const status = e.target.value;
+    dispatch(changeStatusFilter(status));
+  }
+
   return <div className='row g-3'>
     <div className="col-auto">
       <div className="form-floating mb-3">
@@ -19,7 +26,7 @@ export const TaskFilters = () => {
           type="text"
           name="filter"
           className="form-control"
-          value={filterValue}
+          value={filters.textFilter}
           onChange={handleFilterChange}
         />
         <label htmlFor="floatingInput">Search</label>
@@ -27,12 +34,18 @@ export const TaskFilters = () => {
     </div>
     <div className="col-auto">
       <div className="form-floating">
-        <select value={categoryFilter} className="form-select mb-3" id="floatingSelect" onChange={handleCategoryChange}>
-          {categories.map((cat) => {
-            return <option key={cat} value={cat}>{cat.toUpperCase()}</option>;
-          })}
+        <select value={filters.categoryFilter} className="form-select mb-3" id="floatingSelect" onChange={handleCategoryChange}>
+          {categoriesForFilter.map((cat) => <option key={cat} value={cat}>{cat.toUpperCase()}</option>)}
         </select>
         <label htmlFor="floatingSelect">Select category</label>
+      </div>
+    </div>
+    <div className="col-auto">
+      <div className="form-floating">
+        <select value={filters.statusFilter} className="form-select mb-3" id="floatingSelect" onChange={handleStatusChange}>
+          {completedFilters.map((s) => <option key={s} value={s}>{s.toUpperCase()}</option>)}
+        </select>
+        <label htmlFor="floatingSelect">Select status</label>
       </div>
     </div>
   </div>

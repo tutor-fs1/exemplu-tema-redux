@@ -1,11 +1,18 @@
+import { useDispatch } from "react-redux";
+import { addTask } from "redux/tasksSlice";
+import { categories } from "redux/constants";
+
 export const AddTask = () => {
+  const dispatch = useDispatch();
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.elements.contactName.value;
     const category = form.elements.category.value;
-    console.log(name);
-    console.log(category);
+    dispatch(addTask(name, category));
+    form.reset();
   }
   return <div>
     <form onSubmit={handleSubmit}>
@@ -18,10 +25,7 @@ export const AddTask = () => {
 
       <div className="form-floating">
         <select className="form-select mb-3" id="floatingSelect" name="category">
-          <option>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          {categories.map((cat) => <option key={cat} value={cat}>{cat.toUpperCase()}</option>)}
         </select>
         <label htmlFor="category">Works with selects</label>
       </div>
